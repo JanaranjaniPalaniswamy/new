@@ -1,0 +1,22 @@
+
+# Success
+![Average_velocity_in_m_s-1.svg](report_assets/Average_velocity_in_m_s-1.svg)![Ratio_of_successful_rollouts.svg](report_assets/Ratio_of_successful_rollouts.svg)
+![Ratio_of_rollouts_reaching_the_goal_lane.svg](report_assets/Ratio_of_rollouts_reaching_the_goal_lane.svg)
+# Scenario
+![Ratio_of_rollouts_ending_in_collision_of_others.svg](report_assets/Ratio_of_rollouts_ending_in_collision_of_others.svg)
+# Safety
+![Ratio_of_rollouts_ending_in_collision.svg](report_assets/Ratio_of_rollouts_ending_in_collision.svg)![Ratio_of_rollouts_ending_in_front_collision_into_rear.svg](report_assets/Ratio_of_rollouts_ending_in_front_collision_into_rear.svg)
+![Ratio_of_rollouts_ending_in_front_collision_into_side.svg](report_assets/Ratio_of_rollouts_ending_in_front_collision_into_side.svg)![Ratio_of_rollouts_with_offroad_driving.svg](report_assets/Ratio_of_rollouts_with_offroad_driving.svg)
+![Average_safety_distance_violations_value_in_s2.svg](report_assets/Average_safety_distance_violations_value_in_s2.svg)![Mean_number_of_hard_brakings_per_time_step.svg](report_assets/Mean_number_of_hard_brakings_per_time_step.svg)
+![Average_inverse_time_to_collision_in_s-1.svg](report_assets/Average_inverse_time_to_collision_in_s-1.svg)
+# Comfort
+![Average_squared_acceleration_in_m2_s-4.svg](report_assets/Average_squared_acceleration_in_m2_s-4.svg)![Average_jerk_in_m_s-3.svg](report_assets/Average_jerk_in_m_s-3.svg)
+![Average_turn_rate_in_rad_s-1.svg](report_assets/Average_turn_rate_in_rad_s-1.svg)![Average_comfort_distance_violations_value_in_s2.svg](report_assets/Average_comfort_distance_violations_value_in_s2.svg)
+![Maximum_deceleration_during_braking_in_m_s-2.svg](report_assets/Maximum_deceleration_during_braking_in_m_s-2.svg)
+# Fairness
+![Average_velocity_of_other_players_in_m_s-1.svg](report_assets/Average_velocity_of_other_players_in_m_s-1.svg)![Average_acceleration_of_other_players_in_m_s-2.svg](report_assets/Average_acceleration_of_other_players_in_m_s-2.svg)
+
+# Highway
+![Average_number_of_lane_changes_per_rollout.svg](report_assets/Average_number_of_lane_changes_per_rollout.svg)
+# Auxiliary
+![Minimum_velocity_after_braking_in_m_s-1.svg](report_assets/Minimum_velocity_after_braking_in_m_s-1.svg)
