@@ -1,0 +1,232 @@
+{
+  "env_config": {
+    "path_to_class": "plai_highway_env_plugin.env.plai_env.PlaiEnv",
+    "config": {
+      "plai_env": {
+        "observation": {
+          "type": "TimeToCollision"
+        },
+        "action": {
+          "type": "DiscreteMetaAction"
+        },
+        "other_vehicles_type": "highway_env.vehicle.behavior.IDMVehicle",
+        "duration": 120,
+        "screen_width": 500,
+        "screen_height": 500,
+        "centering_position": [
+          0.3,
+          0.5
+        ],
+        "scaling": 5.5,
+        "simulation_frequency": 10,
+        "policy_frequency": 10,
+        "show_trajectories": false,
+        "render_agent": true,
+        "offscreen_rendering": false,
+        "manual_control": false,
+        "real_time_rendering": false
+      },
+      "scenario": {
+        "path_to_class": "plai_highway_env_plugin.env.scenario.CatalogueScenarioGenerator",
+        "config": {
+          "catalogue_path": "/mnt/workspace/data/scenario_catalogues/evaluation_bios/layeredmap/yielding_1000"
+        }
+      },
+      "object_filter": {
+        "path_to_class": "plai.lib.object_filter.FixedOcclusionZonesObjectFilter",
+        "config": {
+          "occlusion_zones": [
+            {
+              "zone": [
+                [
+                  -861.5,
+                  -687
+                ],
+                [
+                  -864,
+                  -687
+                ],
+                [
+                  -864,
+                  -697
+                ],
+                [
+                  -862,
+                  -697
+                ]
+              ],
+              "trigger_zone": [
+                [
+                  -858.32,
+                  -754
+                ],
+                [
+                  -861.51,
+                  -754
+                ],
+                [
+                  -863.71,
+                  -744
+                ],
+                [
+                  -861.32,
+                  -744
+                ]
+              ]
+            },
+            {
+              "zone": [
+                [
+                  -881,
+                  -667
+                ],
+                [
+                  -873,
+                  -669
+                ],
+                [
+                  -873,
+                  -674
+                ],
+                [
+                  -882,
+                  -672
+                ]
+              ],
+              "trigger_zone": [
+                [
+                  -841.0,
+                  -667.4
+                ],
+                [
+                  -846,
+                  -669.4
+                ],
+                [
+                  -845.5,
+                  -675.2
+                ],
+                [
+                  -841.2,
+                  -671.8
+                ]
+              ]
+            },
+            {
+              "zone": [
+                [
+                  -880,
+                  -713
+                ],
+                [
+                  -890,
+                  -713
+                ],
+                [
+                  -890,
+                  -707
+                ],
+                [
+                  -880,
+                  -707
+                ]
+              ],
+              "trigger_zone": [
+                [
+                  -907,
+                  -717
+                ],
+                [
+                  -912,
+                  -717
+                ],
+                [
+                  -912,
+                  -724
+                ],
+                [
+                  -907,
+                  -724
+                ]
+              ]
+            },
+            {
+              "zone": [
+                [
+                  -905.4,
+                  -686.8
+                ],
+                [
+                  -902,
+                  -686.8
+                ],
+                [
+                  -900,
+                  -678.5
+                ],
+                [
+                  -903,
+                  -678.5
+                ]
+              ],
+              "trigger_zone": [
+                [
+                  -909.7,
+                  -630.7
+                ],
+                [
+                  -906,
+                  -630.7
+                ],
+                [
+                  -904,
+                  -638.9
+                ],
+                [
+                  -907.3,
+                  -638.9
+                ]
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "features_generator_config": {
+    "configs": [
+      {
+        "path_to_class": "plai_highway_env_plugin.expert_policies.expert_features_generator.IDMExpertFeaturesGenerator",
+        "config": {
+          "features_name": "expert",
+          "num_frames": 1,
+          "stride": 0,
+          "additional_parameters": {}
+        }
+      }
+    ],
+    "online_antepolation": "constant_velocity"
+  },
+  "policy_config": {
+    "path_to_class": "plai_highway_env_plugin.expert_policies.expert_policies.LimitedVisibilityIDMExpertPolicy",
+    "config": {
+      "output_names": [
+        "controls"
+      ]
+    },
+    "is_expert": true
+  },
+  "controls_generator_config": {
+    "path_to_class": "plai_highway_env_plugin.env.controls_generator.FromControlsControlsGenerator",
+    "config": {
+      "input_names": [
+        "controls"
+      ]
+    }
+  },
+  "meta_info": {
+    "date": "2022-02-11_17-00-54",
+    "commit": "9016a360ac952159c5c81970748472f53abba43a",
+    "runtime": 1101.17928
+  }
+}

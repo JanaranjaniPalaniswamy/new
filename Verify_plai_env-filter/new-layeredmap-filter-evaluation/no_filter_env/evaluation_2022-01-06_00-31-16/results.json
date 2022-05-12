@@ -1,0 +1,18 @@
+{
+  "scenarios": {
+    "layeredmap_general": "scenario_layeredmap_general/results.json",
+    "layeredmap_empty": "scenario_layeredmap_empty/results.json",
+    "layeredmap_yielding": "scenario_layeredmap_yielding/results.json",
+    "layeredmap_yielding_preceding_vehicle": "scenario_layeredmap_yielding_preceding_vehicle/results.json",
+    "layeredmap_stopping": "scenario_layeredmap_stopping/results.json",
+    "layeredmap_driveoff": "scenario_layeredmap_driveoff/results.json",
+    "syntheticmap_yielding": "scenario_syntheticmap_yielding/results.json",
+    "syntheticmap_yielding_preceding_vehicle": "scenario_syntheticmap_yielding_preceding_vehicle/results.json"
+  },
+  "Hardware Resources": {
+    "gpu_memory_MiB": 1147.5,
+    "features_gen_runtime_ms": 13.668561010000007,
+    "controls_gen_runtime_ms": 1.8821781599999994,
+    "policy_forward_runtime_ms": 0.5627181299999999
+  }
+}

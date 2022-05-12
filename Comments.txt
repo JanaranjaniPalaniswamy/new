@@ -1,0 +1,26 @@
+[10.02.2022 13:13] Stoll Martin (CR/AAS1)
+That's not the desired results...First things first: limited visibility IDM behaves exactly the same as the original IDM, so that's worth investigating. Why doesn't it crash? Is the occluded region too small? Does it approach the roundabout slowly even if the road is empty? Is it able to break very hard when the occlusion is lifted?
+
+[10.02.2022 13:15] Stoll Martin (CR/AAS1)
+I didn't expect your full new model to perform very well in the first shot, so that's not very surprising. It's not able to continue driving once stopped, why is that? There's no active occlusion, so it should be able to go. Bug somewhere?
+
+[10.02.2022 13:15] Stoll Martin (CR/AAS1)
+But first, I think it's more important to focus on the limited-visibility-only model. Why it is yielding so nicely.
+
+
+============================
+mnt/workspace/experiments_jana/rollouts
+
+2 things: Maybe the zones still end too early. Also, traffic is quite far away, still way outside the occlusion zone during the approach.
+
+In general, it would be helpful to not have random scenarios, but always the same small set. There's a script to generate a scenario catalogue.
+
+
+===============================
+/mnt/workspace/experiments_jana/trig_final_no_spawn
+
+I looked through the first 10 videos. rollout_7 is promising, because ego cannot stop in time and enters the roundabout a little.
+
+(1) you are sure that the vehicles re-appear because ego leaves the trigger zone, and not because the vehicle leaves the occlusion zone, right?
+
+(2) ego seems to approach the roundabout quite slowly. Why? Is it the same for scenarios without traffic?

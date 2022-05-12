@@ -1,0 +1,11 @@
+{
+  "scenarios": {
+    "layeredmap_yielding": "scenario_layeredmap_yielding/results.json"
+  },
+  "Hardware Resources": {
+    "gpu_memory_MiB": 0.0,
+    "features_gen_runtime_ms": 0.9597993800000003,
+    "controls_gen_runtime_ms": 0.0045634000000000004,
+    "policy_forward_runtime_ms": 9.22196935
+  }
+}

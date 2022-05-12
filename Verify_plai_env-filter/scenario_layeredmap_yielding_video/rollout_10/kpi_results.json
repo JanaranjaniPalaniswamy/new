@@ -1,0 +1,142 @@
+{
+  "Success": {
+    "Average velocity in m s-1": [
+      5.527693892142627,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "Ratio of successful rollouts": [
+      1.0,
+      [
+        0.20654931437723742,
+        1.0
+      ]
+    ],
+    "Ratio of rollouts reaching the goal lane": [
+      1.0,
+      [
+        0.20654931437723742,
+        1.0
+      ]
+    ]
+  },
+  "Scenario": {
+    "Ratio of rollouts ending in collision of others": [
+      0.0,
+      [
+        0.0,
+        0.7934506856227626
+      ]
+    ]
+  },
+  "Safety": {
+    "Ratio of rollouts ending in collision": [
+      0.0,
+      [
+        0.0,
+        0.7934506856227626
+      ]
+    ],
+    "Ratio of rollouts ending in collision at front of ego": [
+      0.0,
+      [
+        0.0,
+        0.7934506856227626
+      ]
+    ],
+    "Ratio of rollouts with offroad driving": [
+      0.0,
+      [
+        0.0,
+        0.7934506856227626
+      ]
+    ],
+    "Average safety distance violations value in s2": [
+      0.05249524027243241,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "Mean number of hard brakings per time step": [
+      0.0018450184501845018,
+      [
+        0.00032576533917486544,
+        0.010375984640232639
+      ]
+    ],
+    "Average inverse time to collision in s-1": [
+      0.0,
+      [
+        NaN,
+        NaN
+      ]
+    ]
+  },
+  "Comfort": {
+    "Average squared acceleration in m2 s-4": [
+      3.573884257659346,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "Average jerk in m s-3": [
+      7.243848632570747,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "Average turn rate in rad s-1": [
+      0.12807291323504866,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "Average comfort distance violations value in s2": [
+      1.8296850707036956,
+      [
+        NaN,
+        NaN
+      ]
+    ]
+  },
+  "Fairness": {
+    "Average velocity of other players in m s-1": [
+      9.268244902248371,
+      [
+        NaN,
+        NaN
+      ]
+    ],
+    "Average acceleration of other players in m s-2": [
+      0.6493764383662894,
+      [
+        NaN,
+        NaN
+      ]
+    ]
+  },
+  "Highway": {
+    "Average number of lane changes per rollout": [
+      4.0,
+      [
+        1.089865373626325,
+        10.241588675403694
+      ]
+    ]
+  },
+  "Auxiliary": {
+    "Minimum velocity after braking in m s-1": [
+      0.0,
+      [
+        NaN,
+        NaN
+      ]
+    ]
+  }
+}

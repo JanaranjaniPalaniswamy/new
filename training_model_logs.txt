@@ -1,0 +1,20 @@
+.input shapes- backbone 10
+backone output torch.Size([1, 24, 16, 16])
+waypoint head 1 input 24
+waypoint 1 output shape torch.Size([1, 32, 8, 8])
+waypoint 2 input shape torch.Size([32, 8, 8])
+waypoint 2 output shape [(5, 2)]
+prediction head input 24
+prediction head output (10, 16, 16)
+2022/05/08 12:41:19 INFO mlflow.tracking.fluent: Experiment with name 'foo' does not exist. Creating a new experiment.
+Training epoch: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:02<00:00,  1.32it/s]
+Preprocessing rollouts for train: 100%|█████████████████████████████████████████████████████████████████████████████████████████| 2/2 [00:04<00:00,  2.24s/it]
+Preprocessing rollouts for dev: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:02<00:00,  2.18s/it]
+input shapes- backbone 10
+backone output torch.Size([1, 64, 16, 16])
+waypoint head 1 input 64
+waypoint 1 output shape torch.Size([1, 32, 8, 8])
+waypoint 2 input shape torch.Size([32, 8, 8])
+waypoint 2 output shape [(5, 2)]
+prediction head input 64
+prediction head output (5, 16, 16)

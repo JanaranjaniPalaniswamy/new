@@ -1,0 +1,56 @@
+# semantics that are displayed in the grids
+MAP_LINES = ["solid", "broken"]
+MAP_SURFACE = ["road_surface"]
+VEHICLE_ELEMENTS = ["ego", "traffic"]
+PATH_ELEMENTS = ["planned_path_layer"]
+VISIBILITY_ELEMENTS = ["visibility"]
+
+MAP_COLORS = {
+    "solid": COLORS_RGB["white"],
+    "broken": COLORS_RGB["turquoise"],
+    "road_surface": COLORS_RGB["grey"],
+}
+
+VEHICLE_COLORS = {
+    "ego": COLORS_RGB["green"],
+    "traffic": COLORS_RGB["red"],
+}
+
+PATH_COLORS = {
+    "planned_path_layer": COLORS_RGB["magenta"],
+}
+
+VISIBILITY_COLORS = {
+    "visibility": COLORS_RGB["dark_grey"],
+}
+
+ALL_COLORS = {
+    **MAP_COLORS,
+    **VEHICLE_COLORS,
+    **PATH_COLORS,
+    **VISIBILITY_COLORS,
+}
+
+
+@dataclass
+class GridConfig(object):
+    height: int = 64  # [px] image height
+    width: int = 64  # [px] image width
+    ego_offset_from_top: int = 21  # [px] ego pos in image (height coordinate, from top)
+    ego_offset_from_left: int = (
+        32  # [px] ego pos in image (width coordinate, from left)
+    )
+    grid_resolution: float = 1.0  # metre / pixel
+
+    def to_dict(self):
+        return asdict(self)
+
+    def get_downscaled_copy(self, factor: int = 1):
+        return GridConfig(
+            height=self.height // factor,
+            width=self.width // factor,
+            ego_offset_from_top=self.ego_offset_from_top / factor,
+            ego_offset_from_left=self.ego_offset_from_left / factor,
+            grid_resolution=self.grid_resolution * factor,
+        )
+

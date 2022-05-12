@@ -1,0 +1,44 @@
+Sensor data fusion Automated partikng systems
+----------------------------------------------
+Daniel Geldner (XC-DX/EPO2)
+
+
+Cross, diagonal parking, backwoard moving, = remote parking using smartphone and PK
+garage approaching feature
+home zone region = garage parking
+
+basis on fusion = input 4 cameras, Ultrasonic sensors, ==> static env representation and dynamic (pedestrians) env representation.
+platform team == pilot project
+
+PACE = Cariad project
+
+next gen dev:
+---
+new static road representation
+object generation
+classify objects
+freespace processing
+reference system based on lidar
+python based environment - prototypes
+transfer them into target code = c/c++
+Math behind the topic (essential) - min level
+
+
+Linear Algebra
+===================
+
+• Eigendecomposition - 
+• Optimization - 
+• Probability Distributions
+• Expectation Value, Variance - 
+• Normal Distribution
+• Confidence Intervals / P-Values
+• Multivariate Normal Distribution - PER_DeepDive/OTC_Deep_Dive_2020-March-11.pptx&action=default&DefaultItemOpen=1
+• Covariance - 
+• Covariance Matrix, Covariance Ellipse - 
+• Estimators based on discrete samples
+• Error of the mean
+• Error estimate for correlated samples
+• Bayes' Theorem - 
+• Likelihood Function - 
+• Kalman Filter - 

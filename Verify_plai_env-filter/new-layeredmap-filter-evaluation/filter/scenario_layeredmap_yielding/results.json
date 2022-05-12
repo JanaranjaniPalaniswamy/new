@@ -1,0 +1,142 @@
+{
+  "Success": {
+    "Average velocity in m s-1": [
+      6.009042398925629,
+      [
+        5.75583731726971,
+        6.262247480581549
+      ]
+    ],
+    "Ratio of successful rollouts": [
+      0.81,
+      [
+        0.7222115462093562,
+        0.8748524849023126
+      ]
+    ],
+    "Ratio of rollouts reaching the goal lane": [
+      0.81,
+      [
+        0.7222115462093562,
+        0.8748524849023126
+      ]
+    ]
+  },
+  "Scenario": {
+    "Ratio of rollouts ending in collision of others": [
+      0.0,
+      [
+        0.0,
+        0.03699349820698568
+      ]
+    ]
+  },
+  "Safety": {
+    "Ratio of rollouts ending in collision": [
+      0.15,
+      [
+        0.09305985283656633,
+        0.23283559590832367
+      ]
+    ],
+    "Ratio of rollouts ending in collision at front of ego": [
+      0.09,
+      [
+        0.04807254000256515,
+        0.16226212852716312
+      ]
+    ],
+    "Ratio of rollouts with offroad driving": [
+      0.0,
+      [
+        0.0,
+        0.03699349820698568
+      ]
+    ],
+    "Average safety distance violations value in s2": [
+      0.0833827644641063,
+      [
+        0.055797019263263276,
+        0.11096850966494931
+      ]
+    ],
+    "Mean number of hard brakings per time step": [
+      0.020860140552311196,
+      [
+        0.01951161027124016,
+        0.022299753734194613
+      ]
+    ],
+    "Average inverse time to collision in s-1": [
+      0.008159434315395548,
+      [
+        0.006218243762076088,
+        0.010100624868715009
+      ]
+    ]
+  },
+  "Comfort": {
+    "Average squared acceleration in m2 s-4": [
+      21.605816418347978,
+      [
+        17.636408312421835,
+        25.57522452427412
+      ]
+    ],
+    "Average jerk in m s-3": [
+      19.501455551359197,
+      [
+        17.93587441248907,
+        21.067036690229322
+      ]
+    ],
+    "Average turn rate in rad s-1": [
+      0.08596788226908231,
+      [
+        0.076368675921554,
+        0.09556708861661062
+      ]
+    ],
+    "Average comfort distance violations value in s2": [
+      3.5658752040803336,
+      [
+        2.7495352057495364,
+        4.382215202411131
+      ]
+    ]
+  },
+  "Fairness": {
+    "Average velocity of other players in m s-1": [
+      7.2849958365551295,
+      [
+        6.985988828574069,
+        7.58400284453619
+      ]
+    ],
+    "Average acceleration of other players in m s-2": [
+      0.9637123261007209,
+      [
+        0.9097451078846401,
+        1.0176795443168016
+      ]
+    ]
+  },
+  "Highway": {
+    "Average number of lane changes per rollout": [
+      1.43,
+      [
+        1.205232751221547,
+        1.6845193650053683
+      ]
+    ]
+  },
+  "Auxiliary": {
+    "Minimum velocity after braking in m s-1": [
+      0.02544396799018018,
+      [
+        0.0004902017979630177,
+        0.05039773418239734
+      ]
+    ]
+  }
+}

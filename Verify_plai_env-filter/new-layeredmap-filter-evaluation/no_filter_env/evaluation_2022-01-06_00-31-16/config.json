@@ -1,0 +1,189 @@
+{
+  "env_config": {
+    "path_to_class": "plai_highway_env_plugin.env.plai_env.PlaiEnv",
+    "config": {
+      "plai_env": "Urban.json",
+      "scenario": {
+        "path_to_class": "plai_highway_env_plugin.env.scenario.RandomScenarioGenerator",
+        "config": "Roundabout.json"
+      },
+      "object_filter": {
+        "path_to_class": "plai.lib.object_filter.NoObjectFilter",
+        "config": {}
+      }
+    }
+  },
+  "features_generator_config": {
+    "configs": [
+      {
+        "path_to_class": "plai.features_and_labels.grid_features.grid_features_generator.GridFeaturesGenerator",
+        "config": {
+          "num_frames": 3,
+          "stride": 2,
+          "features_name": "binary_grid_features",
+          "mode": "binary",
+          "grid_cf": {
+            "height": 64,
+            "width": 64,
+            "ego_offset_from_top": 21,
+            "ego_offset_from_left": 32,
+            "grid_resolution": 1.0
+          }
+        }
+      }
+    ],
+    "online_antepolation": "constant_velocity"
+  },
+  "policy_config": {
+    "path_to_class": "plai.learning.policies.CnnBackboneWaypointsHead",
+    "path_to_state_dict": "/mnt/workspace/experiments_markus/trainings/road_surface/path_l1_light/policy.state_dict",
+    "config": {
+      "input_names": [
+        "binary_grid_features"
+      ],
+      "input_shapes": [
+        [
+          10,
+          64,
+          64
+        ]
+      ],
+      "output_names": [
+        "waypoints"
+      ],
+      "output_shapes": [
+        [
+          15,
+          2
+        ]
+      ],
+      "random_seed": null
+    }
+  },
+  "controls_generator_config": {
+    "path_to_class": "plai_highway_env_plugin.env.controls_generator.FromWaypointsControlsGenerator",
+    "config": {
+      "input_names": [
+        "waypoints"
+      ],
+      "num_waypoints_frames": 15,
+      "waypoints_stride": 2,
+      "num_trajectory_frames": 30,
+      "trajectory_stride": 1
+    }
+  },
+  "evaluation_config": {
+    "scenarios": {
+      "layeredmap_general": {
+        "num_rollouts": 200,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.RandomScenarioGenerator",
+          "config": {
+            "topology": "reflarry_roundabout_cutout.json",
+            "start_lanes": [
+              "21",
+              "18",
+              "16"
+            ],
+            "goal_lanes": [
+              "4",
+              "7",
+              "13"
+            ],
+            "init_velocity": 3,
+            "vehicle_spacing": 10,
+            "vehicles_count": 8,
+            "controlled_vehicles_count": 1,
+            "duration": 120
+          }
+        }
+      },
+      "layeredmap_empty": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.RandomScenarioGenerator",
+          "config": {
+            "topology": "reflarry_roundabout_cutout.json",
+            "start_lanes": [
+              "21",
+              "18",
+              "16"
+            ],
+            "goal_lanes": [
+              "4",
+              "7",
+              "13"
+            ],
+            "init_velocity": 3,
+            "vehicle_spacing": 10,
+            "vehicles_count": 0,
+            "controlled_vehicles_count": 1,
+            "duration": 120
+          }
+        }
+      },
+      "layeredmap_yielding": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.CatalogueScenarioGenerator",
+          "config": {
+            "catalogue_path": "/mnt/workspace/data/scenario_catalogues/evaluation_bios/layeredmap/yielding_1000"
+          }
+        }
+      },
+      "layeredmap_yielding_preceding_vehicle": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.CatalogueScenarioGenerator",
+          "config": {
+            "catalogue_path": "/mnt/workspace/data/scenario_catalogues/evaluation_bios/layeredmap/yielding_preceding_vehicle_1000"
+          }
+        }
+      },
+      "layeredmap_stopping": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.CatalogueScenarioGenerator",
+          "config": {
+            "catalogue_path": "/mnt/workspace/data/scenario_catalogues/evaluation_bios/layeredmap/stopping_1000"
+          }
+        }
+      },
+      "layeredmap_driveoff": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.CatalogueScenarioGenerator",
+          "config": {
+            "catalogue_path": "/mnt/workspace/data/scenario_catalogues/evaluation_bios/layeredmap/driveoff_1000"
+          }
+        }
+      },
+      "syntheticmap_yielding": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.CatalogueScenarioGenerator",
+          "config": {
+            "catalogue_path": "/mnt/workspace/data/scenario_catalogues/evaluation_bios/syntheticmap/yielding_1000"
+          }
+        }
+      },
+      "syntheticmap_yielding_preceding_vehicle": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.CatalogueScenarioGenerator",
+          "config": {
+            "catalogue_path": "/mnt/workspace/data/scenario_catalogues/evaluation_bios/syntheticmap/yielding_preceding_vehicle_1000"
+          }
+        }
+      }
+    },
+    "use_gpu": false,
+    "store_scenarios": false,
+    "output_directory": "/home/jnp5cob/workspace/no_filter_env/evaluate"
+  },
+  "meta_info": {
+    "date": "2022-01-06_06-51-49",
+    "commit": "d133f8422bc7cab64e86529d97695ea6ca67fde8",
+    "runtime": 22832.448031
+  }
+}
