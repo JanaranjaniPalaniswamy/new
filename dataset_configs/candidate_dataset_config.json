@@ -1,0 +1,120 @@
+{
+  "dataset_config": {
+    "split": {
+      "train": 0.8,
+      "dev": 0.2
+    },
+    "rollout_stride": 1
+  },
+  "features_generator_config": {
+    "configs": [
+      {
+        "path_to_class": "plai.features_and_labels.grid_features.grid_features_generator.GridFeaturesGenerator",
+        "config": {
+          "num_frames": 3,
+          "stride": 2,
+          "features_name": "binary_grid_features",
+          "mode": "binary",
+          "layers": ["solid", "broken", "road_surface", "ego", "traffic", "planned_path_layer"],
+          "grid_cf": {
+            "height": 64,
+            "width": 64,
+            "ego_offset_from_top": 21,
+            "ego_offset_from_left": 32,
+            "grid_resolution": 1.0
+          },
+          "object_filter": {}
+        }
+      }
+    ],
+    "online_antepolation": "constant_velocity"
+  },
+  "labels_generator_config": {
+    "configs": [
+      {
+        "path_to_class": "plai.features_and_labels.labels_generators.WaypointsLabelsGenerator",
+        "config": {
+          "labels_name": "waypoints",
+          "num_frames": 15,
+          "stride": 2
+        }
+      },
+      {
+        "path_to_class": "plai.features_and_labels.labels_generators.PathLabelsGenerator",
+        "config": {
+          "labels_name": "path",
+          "num_frames": 40,
+          "stride": 1
+        }
+      },
+      {
+        "path_to_class": "plai.features_and_labels.labels_generators.DetectionsLabelsGenerator",
+        "config": {
+          "labels_name": "detections",
+          "num_frames": 0,
+          "stride": 0,
+          "grid_cf": {
+            "height": 16,
+            "width": 16,
+            "ego_offset_from_top": 5.25,
+            "ego_offset_from_left": 8,
+            "grid_resolution": 4.0
+          },
+          "object_filter": {}
+        }
+      },
+      {
+        "path_to_class": "plai.features_and_labels.labels_generators.DetectionsLabelsGenerator",
+        "config": {
+          "labels_name": "predictions_1s",
+          "num_frames": 1,
+          "stride": 10,
+          "grid_cf": {
+            "height": 16,
+            "width": 16,
+            "ego_offset_from_top": 5.25,
+            "ego_offset_from_left": 8,
+            "grid_resolution": 4.0
+          },
+          "object_filter": {}
+        }
+      },
+      {
+        "path_to_class": "plai.features_and_labels.labels_generators.DetectionsLabelsGenerator",
+        "config": {
+          "labels_name": "predictions_3s",
+          "num_frames": 1,
+          "stride": 30,
+          "grid_cf": {
+            "height": 16,
+            "width": 16,
+            "ego_offset_from_top": 5.25,
+            "ego_offset_from_left": 8,
+            "grid_resolution": 4.0
+          },
+          "object_filter": {}
+        }
+      },
+      {
+        "path_to_class": "plai.features_and_labels.labels_generators.DetectionsLabelsGenerator",
+        "config": {
+          "labels_name": "predictions_5s",
+          "num_frames": 1,
+          "stride": 50,
+          "grid_cf": {
+            "height": 16,
+            "width": 16,
+            "ego_offset_from_top": 5.25,
+            "ego_offset_from_left": 8,
+            "grid_resolution": 4.0
+          },
+          "object_filter": {}
+        }
+      }
+    ]
+  },
+  "samples_perturbation_config": {
+    "path_to_class": "plai.features_and_labels.samples_perturbation.NoSamplesPerturbation",
+    "config": {}
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "env_config": {
+    "path_to_class": "plai_highway_env_plugin.env.plai_env.PlaiEnv",
+    "config": {
+      "plai_env": "Urban.json",
+      "scenario": {
+        "path_to_class": "plai_highway_env_plugin.env.scenario.RandomScenarioGenerator",
+        "config": "Roundabout.json"
+      },
+      "object_filter": {}
+    }
+  },
+  "features_generator_config": {
+    "configs": [
+      {
+        "path_to_class": "plai_highway_env_plugin.expert_policies.expert_features_generator.IDMExpertFeaturesGenerator",
+        "config": {
+          "features_name": "expert",
+          "num_frames": 1,
+          "stride": 0
+        }
+      }
+    ],
+    "online_antepolation": "constant_position"
+  },
+  "policy_config": {
+    "path_to_class": "plai_highway_env_plugin.expert_policies.expert_policies.IDMExpertPolicy",
+    "is_expert": true,
+    "config": {
+      "output_names": [
+        "controls"
+      ]
+    }
+  },
+  "controls_generator_config": {
+    "path_to_class": "plai_highway_env_plugin.env.controls_generator.FromControlsControlsGenerator",
+    "config": {
+      "input_names": [
+        "controls"
+      ]
+    }
+  },
+  "evaluation_config": {
+    "scenarios": {
+      "layeredmap_general": {
+        "num_rollouts": 200,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.RandomScenarioGenerator",
+          "config": "LayeredMapRng.json"
+        }
+      },
+      "layeredmap_empty": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.RandomScenarioGenerator",
+          "config": "LayeredMapRngEmpty.json"
+        }
+      },
+      "layeredmap_yielding": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.CatalogueScenarioGenerator",
+          "config": {
+            "catalogue_path": "/mnt/workspace/data/scenario_catalogues/evaluation_bios/layeredmap/yielding_1000"
+          }
+        }
+      },
+      "layeredmap_yielding_preceding_vehicle": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.CatalogueScenarioGenerator",
+          "config": {
+            "catalogue_path": "/mnt/workspace/data/scenario_catalogues/evaluation_bios/layeredmap/yielding_preceding_vehicle_1000"
+          }
+        }
+      }
+    },
+    "use_gpu": false,
+    "store_scenarios": false,
+    "output_directory": "MUST SET",
+    "max_workers": 3
+  }
+}

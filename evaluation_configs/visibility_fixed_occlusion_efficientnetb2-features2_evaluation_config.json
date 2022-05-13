@@ -1,0 +1,169 @@
+{
+  "env_config": {
+    "path_to_class": "plai_highway_env_plugin.env.plai_env.PlaiEnv",
+    "config": {
+      "plai_env": "Urban.json",
+      "scenario": {
+        "path_to_class": "plai_highway_env_plugin.env.scenario.CatalogueScenarioGenerator",
+        "config": {
+          "catalogue_path": "/mnt/workspace/data/scenario_catalogues/evaluation_bios/layeredmap/yielding_1000"
+        }
+      },
+      "object_filter": {
+        "path_to_class": "plai.lib.object_filter.FixedOcclusionZonesObjectFilter",
+        "config": { 
+          "occlusion_zones": [
+            {
+                "zone": [[-859.5, -688.6], [-863.9, -688.6], [-868.4, -702.5], [-864.3, -702.5]],
+                "trigger_zone": [
+                  [-860.4, -751.5], [-871.8, -751.5], [-872.8, -719.6], [-864.4, -719.6]
+                ]
+            },
+            {
+                "zone": [[-884.3,-665.5], [-873, -668], [-873,-675], [-884.3, -672.0]],
+                "trigger_zone": [
+                  [-822.5, -655.6], [-854.8, -655.6], [-854.8, -677.7], [-822.5, -677.7]
+                ]
+            },
+            {
+                "zone": [[-881.6,-715.0], [-893.4, -711], [-893.4,-705.9], [-881.6, -710]],
+                "trigger_zone": [
+                  [-909.7,-713], [-932,-717], [-929,-724], [-907, -721]
+                ]
+            },
+            {
+                "zone": [[-906.3, -693.3], [-902.6, -693.3], [-899.0, -678.6], [-903.2,-678.6]],
+                "trigger_zone": [
+                  [-921.5, -604.4], [-894.9, -604.4], [-894.9,-657.8], [-921.5, -657.8]
+                ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "features_generator_config": {
+    "configs": [
+      {
+        "path_to_class": "plai.features_and_labels.grid_features.grid_features_generator.GridFeaturesGenerator",
+        "config": {
+          "num_frames": 3,
+          "stride": 2,
+          "features_name": "binary_grid_features",
+          "mode": "binary",
+          "layers": ["solid", "broken", "road_surface", "visibility", "ego", "traffic", "planned_path_layer"],
+          "grid_cf": {
+            "height": 64,
+            "width": 64,
+            "ego_offset_from_top": 21,
+            "ego_offset_from_left": 32,
+            "grid_resolution": 1.0
+          },
+          "object_filter": {
+            "path_to_class": "plai.lib.object_filter.FixedOcclusionZonesObjectFilter",
+            "config": { 
+              "occlusion_zones": [
+                {           
+                    "zone": [[-859.5, -688.6], [-863.9, -688.6], [-868.4, -702.5], [-864.3, -702.5]],
+                    "trigger_zone": [
+                      [-860.4, -751.5], [-871.8, -751.5], [-872.8, -719.6], [-864.4, -719.6]
+                    ] 
+                },
+                {
+                    "zone": [[-884.3,-665.5], [-873, -668], [-873,-675], [-884.3, -672.0]],
+                    "trigger_zone": [
+                      [-822.5, -655.6], [-854.8, -655.6], [-854.8, -677.7], [-822.5, -677.7]
+                    ]
+                },
+                {
+                    "zone": [[-881.6,-715.0], [-893.4, -711], [-893.4,-705.9], [-881.6, -710]],
+                    "trigger_zone": [
+                      [-909.7,-713], [-932,-717], [-929,-724], [-907, -721]
+                    ]
+                },
+                {
+                    "zone": [[-906.3, -693.3], [-902.6, -693.3], [-899.0, -678.6], [-903.2,-678.6]],
+                    "trigger_zone": [
+                      [-921.5, -604.4], [-894.9, -604.4], [-894.9,-657.8], [-921.5, -657.8]
+                    ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "online_antepolation": "constant_velocity"
+  },
+  "policy_config": {
+    "path_to_class": "plai.learning.policies.FlexibleCnnBackboneWaypointsDetectionHead",
+    "path_to_state_dict": null,
+    "config": {
+      "input_names": [
+        "binary_grid_features"
+      ],
+      "input_shapes": "INFER",
+      "output_names": [
+        "waypoints",
+        "predictions_3s"
+      ],
+      "output_shapes": "INFER",
+      "random_seed": null,
+      "num_detection_frames": 1,
+      "model": "efficientnet_b2",
+      "truncate_after": "features.2"
+    }
+  },
+  "controls_generator_config": {
+    "path_to_class": "plai_highway_env_plugin.env.controls_generator.FromWaypointsControlsGenerator",
+    "config": {
+      "input_names": [
+        "waypoints"
+      ],
+      "num_waypoints_frames": 15,
+      "waypoints_stride": 2,
+      "num_trajectory_frames": 30,
+      "trajectory_stride": 1
+    }
+  },
+  "evaluation_config": {
+   "scenarios": {
+      "layeredmap_general": {
+        "num_rollouts": 200,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.RandomScenarioGenerator",
+          "config": "LayeredMapRng.json"
+        }
+      },
+      "layeredmap_empty": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.RandomScenarioGenerator",
+          "config": "LayeredMapRngEmpty.json"
+        }
+      },
+      "layeredmap_yielding": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.CatalogueScenarioGenerator",
+          "config": {
+            "catalogue_path": "/mnt/workspace/data/scenario_catalogues/evaluation_bios/layeredmap/yielding_1000"
+          }
+        }
+      },
+      "layeredmap_yielding_preceding_vehicle": {
+        "num_rollouts": 100,
+        "scenario": {
+          "path_to_class": "plai_highway_env_plugin.env.scenario.CatalogueScenarioGenerator",
+          "config": {
+            "catalogue_path": "/mnt/workspace/data/scenario_catalogues/evaluation_bios/layeredmap/yielding_preceding_vehicle_1000"
+          }
+        }
+      }
+    },
+    "use_gpu": false,
+    "store_scenarios": false,
+    "output_directory": "MUST SET",
+    "max_workers": 3
+  }
+}

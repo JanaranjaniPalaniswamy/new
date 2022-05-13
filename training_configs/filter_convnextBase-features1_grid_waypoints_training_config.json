@@ -1,0 +1,163 @@
+{
+  "training_config": {
+    "epochs": 50,
+    "batch_size": 512,
+    "learning_rate": 0.001,
+    "learning_rate_scheduler": {
+      "path_to_class": "torch.optim.lr_scheduler.ExponentialLR",
+      "config": {
+        "gamma": 0.94
+      }
+    },
+    "weight_decay": 0.0004884316427125545,
+    "dataset_paths": [
+      [
+        "/mnt/workspace/experiments_jana/Default_IDM/object_filter/dataset/3000_random_offroadparkedcars",
+        1
+      ],
+      [
+        "/mnt/workspace/experiments_jana/Default_IDM/object_filter/dataset/1000_yielding",
+        1
+      ],
+      [
+        "/mnt/workspace/experiments_jana/Default_IDM/object_filter/dataset/1000_yielding_preceeding_vehicle",
+        1
+      ],
+      [
+        "/mnt/workspace/experiments_jana/Default_IDM/object_filter/dataset/1000_stopping",
+        1
+      ],
+      [
+        "/mnt/workspace/experiments_jana/Default_IDM/object_filter/dataset/1000_driveoff",
+        1
+      ],
+      [
+        "/mnt/workspace/experiments_jana/Default_IDM/object_filter/dataset/1000_driveoff_roundabout",
+        1
+      ],
+      [
+        "/mnt/workspace/experiments_jana/Default_IDM/object_filter/dataset/roundaboutRng",
+        1
+      ],
+      [
+        "/mnt/workspace/experiments_jana/Default_IDM/object_filter/dataset/roundaboutRng",
+        1
+      ]
+    ],
+    "random_train_subset": 0.15,
+    "random_dev_subset": 0.05,
+    "dataset_augmentation": {
+      "path_to_class": "plai.lib.dataset_augmentation.RandomRotation",
+      "config": {
+        "degrees": 5,
+        "probability": 0.5,
+        "features_keys": [
+          "binary_grid_features"
+        ],
+        "labels_keys": [
+          "waypoints",
+          "path",
+          "predictions_3s"
+        ],
+        "random_seed": 0
+      }
+    },
+    "use_gpu": true,
+    "experiment_name": "Debug",
+    "mlflow_directory": "MUST SET",
+    "mlflow_run_name": "-",
+    "policy_directory": "MUST SET",
+    "clip_grad_norm_to": 1,
+    "loss_config": [
+      {
+        "loss_function": "l1_loss_smooth",
+        "config": {
+          "output_names": [
+            "waypoints"
+          ],
+          "label_names": [
+            "waypoints"
+          ]
+        },
+        "weight": 0.5,
+        "name": "waypoints_l1_loss_smooth"
+      },
+      {
+        "loss_function": "path_l1_loss_light",
+        "config": {
+          "output_names": [
+            "waypoints"
+          ],
+          "label_names": [
+            "waypoints",
+            "path"
+          ],
+          "trajectory_discount_factor": 1
+        },
+        "weight": 0.5,
+        "name": "path_l1_loss_light"
+      },
+      {
+        "loss_function": "l2_loss_absolute_derivation_discount",
+        "config": {
+          "output_names": [
+            "waypoints"
+          ],
+          "label_names": [
+            "waypoints"
+          ],
+          "trajectory_discount_factor": 1
+        },
+        "weight": 1,
+        "name": "waypoints_l2_loss_derivation_discount"
+      },
+      {
+        "loss_function": "detection_loss_classification",
+        "config": {
+          "output_names": [
+            "predictions_3s"
+          ],
+          "label_names": [
+            "predictions_3s"
+          ],
+          "gamma": 2
+        },
+        "weight": 10,
+        "name": "prediction_3s_loss_classification"
+      },
+      {
+        "loss_function": "detection_loss_regression",
+        "config": {
+          "output_names": [
+            "predictions_3s"
+          ],
+          "label_names": [
+            "predictions_3s"
+          ]
+        },
+        "weight": 0.2,
+        "name": "prediction_3s_loss_regression"
+      }
+    ],
+    "additional_dev_loss_config": null
+  },
+  "policy_config": {
+    "path_to_class": "plai.learning.policies.FlexibleCnnBackboneWaypointsDetectionHead",
+    "path_to_state_dict": null,
+    "config": {
+      "input_names": [
+        "binary_grid_features"
+      ],
+      "input_shapes": "INFER",
+      "output_names": [
+        "waypoints",
+        "predictions_3s"
+      ],
+      "output_shapes": "INFER",
+      "random_seed": null,
+      "num_detection_frames": 1,
+      "model": "convnext_base",
+      "truncate_after": "features.1"
+    }
+  }
+}
